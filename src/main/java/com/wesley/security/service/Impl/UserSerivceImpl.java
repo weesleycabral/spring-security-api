@@ -1,6 +1,7 @@
 package com.wesley.security.service.Impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.wesley.security.dto.UserLoginDTO;
 import com.wesley.security.dto.UserRegistrationDTO;
 import com.wesley.security.entity.User;
+import com.wesley.security.exception.UserNotFoundException;
 import com.wesley.security.repository.UserRepository;
 import com.wesley.security.service.UserService;
 
@@ -22,8 +24,23 @@ public class UserSerivceImpl implements UserService {
   private PasswordEncoder passwordEncoder;
 
   @Override
-  public List<User> getAllUsers() {
-    return userRepository.findAll();
+  public List<UserRegistrationDTO> getAllUsers() {
+    List<User> users = userRepository.findAll();
+    return UserRegistrationDTO.toDTOs(users);
+  }
+
+  @Override
+  public UserRegistrationDTO getUserById(Long id) throws UserNotFoundException {
+    User user = userRepository.findById(id).orElseThrow(UserNotFoundException::new);
+
+    return UserRegistrationDTO.toDTO(user);
+  }
+
+  @Override
+  public UserRegistrationDTO getUserByEmail(String email) throws UserNotFoundException {
+    User user = userRepository.findByEmail(email).orElseThrow(UserNotFoundException::new);
+
+    return UserRegistrationDTO.toDTO(user);
   }
 
   @Override
@@ -36,10 +53,8 @@ public class UserSerivceImpl implements UserService {
 
   @Override
   public boolean login(UserLoginDTO userDTO) {
-    User user = userRepository.findByEmail(userDTO.getEmail());
-    if (user != null && passwordEncoder.matches(userDTO.getPassword(), user.getPassword())) {
-      return true;
-    }
-    return false;
+    return userRepository.findByEmail(userDTO.getEmail())
+        .map(user -> passwordEncoder.matches(userDTO.getPassword(), user.getPassword()))
+        .orElse(false);
   }
 }
