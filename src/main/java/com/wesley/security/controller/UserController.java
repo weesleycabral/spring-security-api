@@ -4,18 +4,18 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wesley.security.dto.UserLoginDTO;
 import com.wesley.security.dto.UserRegistrationDTO;
-import com.wesley.security.entity.User;
+import com.wesley.security.exception.UserNotFoundException;
 import com.wesley.security.service.UserService;
+
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.Email;
 
 @RestController
 @RequestMapping("/users")
@@ -25,24 +25,21 @@ public class UserController {
   private UserService userService;
 
   @GetMapping
-  public List<User> getAll() {
+  @ResponseStatus(value = HttpStatus.OK)
+  public List<UserRegistrationDTO> getAll() {
     return userService.getAllUsers();
   }
 
-  @PostMapping("/register")
-  @ResponseStatus(HttpStatus.CREATED)
-  public void register(@RequestBody UserRegistrationDTO userDTO) {
-    userService.register(userDTO);
+  @GetMapping("/id/{id}")
+  @ResponseStatus(value = HttpStatus.OK)
+  public UserRegistrationDTO getById(@PathVariable("id") Long id) throws UserNotFoundException {
+    return userService.getUserById(id);
   }
 
-  @PostMapping("/login")
-  public ResponseEntity<String> login(@RequestBody UserLoginDTO userDTO) {
-    boolean isAuthenticated = userService.login(userDTO);
-    if (isAuthenticated) {
-      return ResponseEntity.ok("Login successful");
-    } else {
-      return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
-    }
+  @GetMapping("/email/{email}")
+  @ResponseStatus(value = HttpStatus.OK)
+  public UserRegistrationDTO getByEmail(@Valid @Email @PathVariable("email") String email)
+      throws UserNotFoundException {
+    return userService.getUserByEmail(email);
   }
-
 }
