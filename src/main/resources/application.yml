@@ -1,14 +1,15 @@
 spring:
   application:
     name: spring-security-app
-h2:
-  console:
-    enabled: true
-datasource:
-  url: jdbc:h2:mem:testdb
-  username: sa
-  password: password
-  driver-class-name: org.h2.Driver
+  h2:
+    console:
+      enabled: true
+  datasource:
+    url: jdbc:h2:file:./data/db
+    username: sa
+    password: password
+    driverClassName: org.h2.Driver
+    dialect: 
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
