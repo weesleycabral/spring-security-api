@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wesley.security.dto.UserRegistrationDTO;
+import com.wesley.security.dto.UserResponseDTO;
 import com.wesley.security.exception.UserNotFoundException;
 import com.wesley.security.service.UserService;
 
@@ -26,19 +26,19 @@ public class UserController {
 
   @GetMapping
   @ResponseStatus(value = HttpStatus.OK)
-  public List<UserRegistrationDTO> getAll() {
+  public List<UserResponseDTO> getAll() {
     return userService.getAllUsers();
   }
 
   @GetMapping("/id/{id}")
   @ResponseStatus(value = HttpStatus.OK)
-  public UserRegistrationDTO getById(@PathVariable("id") Long id) throws UserNotFoundException {
+  public UserResponseDTO getById(@PathVariable("id") Long id) throws UserNotFoundException {
     return userService.getUserById(id);
   }
 
   @GetMapping("/email/{email}")
   @ResponseStatus(value = HttpStatus.OK)
-  public UserRegistrationDTO getByEmail(@Valid @Email @PathVariable("email") String email)
+  public UserResponseDTO getByEmail(@Valid @Email @PathVariable("email") String email)
       throws UserNotFoundException {
     return userService.getUserByEmail(email);
   }
