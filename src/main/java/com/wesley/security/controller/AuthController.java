@@ -28,12 +28,7 @@ public class AuthController {
   }
 
   @PostMapping("/login")
-  public ResponseEntity<String> login(@RequestBody UserLoginDTO userDTO) {
-    boolean isAuthenticated = userService.login(userDTO);
-    if (isAuthenticated) {
-      return ResponseEntity.ok("Login successful");
-    } else {
-      throw new InvalidCredentialsException();
-    }
+  public void login(@RequestBody UserLoginDTO userDTO) throws InvalidCredentialsException {
+    userService.login(userDTO);
   }
 }

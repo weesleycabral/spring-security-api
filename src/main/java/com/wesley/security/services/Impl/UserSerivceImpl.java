@@ -1,6 +1,7 @@
 package com.wesley.security.services.Impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -10,6 +11,9 @@ import com.wesley.security.dto.UserLoginDTO;
 import com.wesley.security.dto.UserRegistrationDTO;
 import com.wesley.security.dto.UserResponseDTO;
 import com.wesley.security.entity.User;
+import com.wesley.security.exception.EmailAlreadyExistsException;
+import com.wesley.security.exception.InvalidCredentialsException;
+import com.wesley.security.exception.InvalidDataException;
 import com.wesley.security.exception.UserNotFoundException;
 import com.wesley.security.repository.UserRepository;
 import com.wesley.security.services.UserService;
@@ -45,6 +49,14 @@ public class UserSerivceImpl implements UserService {
 
   @Override
   public void register(UserRegistrationDTO userDTO) {
+    Optional<User> existingUser = userRepository.findByEmail(userDTO.getEmail());
+    if (existingUser.isPresent()) {
+      throw new EmailAlreadyExistsException();
+    }
+
+    if (userDTO.getEmail().isEmpty() || userDTO.getPassword().isEmpty()) {
+      throw new InvalidDataException();
+    }
     User user = new User();
     user.setEmail(userDTO.getEmail());
     user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
@@ -52,9 +64,15 @@ public class UserSerivceImpl implements UserService {
   }
 
   @Override
-  public boolean login(UserLoginDTO userDTO) {
-    return userRepository.findByEmail(userDTO.getEmail())
-        .map(user -> passwordEncoder.matches(userDTO.getPassword(), user.getPassword()))
-        .orElse(false);
+  public void login(UserLoginDTO userLoginDTO) throws InvalidCredentialsException {
+    Optional<User> optionalUser = userRepository.findByEmail(userLoginDTO.getEmail());
+    if (optionalUser.isPresent()) {
+      User user = optionalUser.get();
+      if (!passwordEncoder.matches(userLoginDTO.getPassword(), user.getPassword())) {
+        throw new InvalidCredentialsException();
+      }
+    } else {
+      throw new InvalidCredentialsException();
+    }
   }
 }

@@ -16,5 +16,5 @@ public interface UserService {
 
   public void register(UserRegistrationDTO userDTO);
 
-  public boolean login(UserLoginDTO userDTO);
+  public void login(UserLoginDTO userDTO);
 }
