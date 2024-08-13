@@ -1,4 +1,4 @@
-package com.wesley.security.service.Impl;
+package com.wesley.security.services.Impl;
 
 import java.util.List;
 
@@ -12,7 +12,7 @@ import com.wesley.security.dto.UserResponseDTO;
 import com.wesley.security.entity.User;
 import com.wesley.security.exception.UserNotFoundException;
 import com.wesley.security.repository.UserRepository;
-import com.wesley.security.service.UserService;
+import com.wesley.security.services.UserService;
 
 @Service
 public class UserSerivceImpl implements UserService {

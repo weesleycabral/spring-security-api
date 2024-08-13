@@ -1,4 +1,4 @@
-package com.wesley.security.service;
+package com.wesley.security.services;
 
 import java.util.List;
 

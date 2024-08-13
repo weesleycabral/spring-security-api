@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.wesley.security.dto.UserLoginDTO;
 import com.wesley.security.dto.UserRegistrationDTO;
 import com.wesley.security.exception.InvalidCredentialsException;
-import com.wesley.security.service.UserService;
+import com.wesley.security.services.UserService;
 
 @RestController
 @RequestMapping("/auth")

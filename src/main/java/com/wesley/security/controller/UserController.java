@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.wesley.security.dto.UserResponseDTO;
 import com.wesley.security.exception.UserNotFoundException;
-import com.wesley.security.service.UserService;
+import com.wesley.security.services.UserService;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
