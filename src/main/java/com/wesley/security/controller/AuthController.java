@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.wesley.security.dto.UserLoginDTO;
 import com.wesley.security.dto.UserRegistrationDTO;
+import com.wesley.security.exception.InvalidCredentialsException;
 import com.wesley.security.service.UserService;
 
 @RestController
@@ -32,7 +33,7 @@ public class AuthController {
     if (isAuthenticated) {
       return ResponseEntity.ok("Login successful");
     } else {
-      return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
+      throw new InvalidCredentialsException();
     }
   }
 }
