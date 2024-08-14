@@ -2,7 +2,6 @@ package com.wesley.security.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +13,8 @@ import com.wesley.security.dto.UserRegistrationDTO;
 import com.wesley.security.exception.InvalidCredentialsException;
 import com.wesley.security.services.UserService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
@@ -23,7 +24,7 @@ public class AuthController {
 
   @PostMapping("/register")
   @ResponseStatus(HttpStatus.CREATED)
-  public void register(@RequestBody UserRegistrationDTO userDTO) {
+  public void register(@Valid @RequestBody UserRegistrationDTO userDTO) {
     userService.register(userDTO);
   }
 

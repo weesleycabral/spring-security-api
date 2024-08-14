@@ -18,6 +18,8 @@ import com.wesley.security.exception.UserNotFoundException;
 import com.wesley.security.repository.UserRepository;
 import com.wesley.security.services.UserService;
 
+import jakarta.validation.Valid;
+
 @Service
 public class UserSerivceImpl implements UserService {
 
@@ -48,7 +50,7 @@ public class UserSerivceImpl implements UserService {
   }
 
   @Override
-  public void register(UserRegistrationDTO userDTO) {
+  public void register(@Valid UserRegistrationDTO userDTO) {
     Optional<User> existingUser = userRepository.findByEmail(userDTO.getEmail());
     if (existingUser.isPresent()) {
       throw new EmailAlreadyExistsException();
