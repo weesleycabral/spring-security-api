@@ -7,10 +7,12 @@ spring:
   datasource:
     url: jdbc:h2:file:./data/db
     username: sa
-    password: password
+    password:
     driverClassName: org.h2.Driver
     dialect: 
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
       ddl-auto: update
+
+api.security.token.secret: my-secret-key
