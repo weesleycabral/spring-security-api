@@ -5,14 +5,13 @@ spring:
     console:
       enabled: true
   datasource:
-    url: jdbc:h2:file:./data/db
-    username: sa
-    password:
-    driverClassName: org.h2.Driver
-    dialect: 
+    url: ${SPRING_DATASOURCE_URL}
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
+    driverClassName: ${SPRING_DATASOURCE_DRIVER_CLASS_NAME}
   jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
+    database-platform: ${SPRING_JPA_DATABASE_PLATFORM}
     hibernate:
-      ddl-auto: update
+      ddl-auto: ${SPRING_JPA_HIBERNATE_DDL_AUTO}
 
-api.security.token.secret: my-secret-key
+api.security.token.secret: ${API_SECURITY_TOKEN_SECRET}
