@@ -8,10 +8,10 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false)
 public class ErrorCreatingTokenException extends RuntimeException {
-  private final HttpStatus status = HttpStatus.CONFLICT;
+  private final HttpStatus status = HttpStatus.BAD_REQUEST;
 
   public ErrorCreatingTokenException() {
-    super("rror creating token");
+    super("Error creating token");
   }
 
 }
