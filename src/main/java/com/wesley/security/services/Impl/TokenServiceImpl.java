@@ -26,7 +26,7 @@ public class TokenServiceImpl implements TokenService {
   }
 
   @Override
-  public String generateToken(User user) {
+  public String generateToken(User user) throws ErrorCreatingTokenException {
     try {
       Algorithm algorithm = Algorithm.HMAC256(secret);
 
