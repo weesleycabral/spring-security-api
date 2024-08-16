@@ -19,7 +19,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import com.auth0.jwt.algorithms.Algorithm;
 import com.wesley.security.controllers.AuthController;
 import com.wesley.security.dto.UserLoginRequestDTO;
 import com.wesley.security.dto.UserRegisterRequestDTO;
