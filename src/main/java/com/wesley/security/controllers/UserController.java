@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.wesley.security.entity.User;
-import com.wesley.security.exception.UserNotFoundException;
+import com.wesley.security.exceptions.UserNotFoundException;
 import com.wesley.security.services.UserService;
 
 import jakarta.validation.Valid;

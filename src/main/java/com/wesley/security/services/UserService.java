@@ -8,7 +8,7 @@ import com.wesley.security.dto.UserLoginRequestDTO;
 import com.wesley.security.dto.UserRegisterRequestDTO;
 import com.wesley.security.dto.UserResponseDTO;
 import com.wesley.security.entity.User;
-import com.wesley.security.exception.UserNotFoundException;
+import com.wesley.security.exceptions.UserNotFoundException;
 
 public interface UserService {
   public List<User> getAllUsers();

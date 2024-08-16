@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.wesley.security.entity.User;
-import com.wesley.security.exception.UserNotFoundException;
+import com.wesley.security.exceptions.UserNotFoundException;
 import com.wesley.security.repository.UserRepository;
 import com.wesley.security.services.TokenService;
 

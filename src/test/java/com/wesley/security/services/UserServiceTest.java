@@ -24,11 +24,11 @@ import com.wesley.security.dto.UserLoginRequestDTO;
 import com.wesley.security.dto.UserRegisterRequestDTO;
 import com.wesley.security.dto.UserResponseDTO;
 import com.wesley.security.entity.User;
-import com.wesley.security.exception.EmailAlreadyExistsException;
-import com.wesley.security.exception.ErrorCreatingTokenException;
-import com.wesley.security.exception.InvalidCredentialsException;
-import com.wesley.security.exception.InvalidDataException;
-import com.wesley.security.exception.UserNotFoundException;
+import com.wesley.security.exceptions.EmailAlreadyExistsException;
+import com.wesley.security.exceptions.ErrorCreatingTokenException;
+import com.wesley.security.exceptions.InvalidCredentialsException;
+import com.wesley.security.exceptions.InvalidDataException;
+import com.wesley.security.exceptions.UserNotFoundException;
 import com.wesley.security.repository.UserRepository;
 import com.wesley.security.services.Impl.UserServiceImpl;
 

@@ -5,12 +5,12 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import com.wesley.security.exception.EmailAlreadyExistsException;
-import com.wesley.security.exception.ErrorCreatingTokenException;
-import com.wesley.security.exception.ErrorMessage;
-import com.wesley.security.exception.InvalidCredentialsException;
-import com.wesley.security.exception.InvalidDataException;
-import com.wesley.security.exception.UserNotFoundException;
+import com.wesley.security.exceptions.EmailAlreadyExistsException;
+import com.wesley.security.exceptions.ErrorCreatingTokenException;
+import com.wesley.security.exceptions.ErrorMessage;
+import com.wesley.security.exceptions.InvalidCredentialsException;
+import com.wesley.security.exceptions.InvalidDataException;
+import com.wesley.security.exceptions.UserNotFoundException;
 
 @ControllerAdvice
 public class CustomExceptionHandler extends ResponseEntityExceptionHandler {

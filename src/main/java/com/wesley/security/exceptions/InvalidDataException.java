@@ -1,4 +1,4 @@
-package com.wesley.security.exception;
+package com.wesley.security.exceptions;
 
 import org.springframework.http.HttpStatus;
 
